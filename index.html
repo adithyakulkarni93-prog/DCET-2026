@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DCET 2026 — Official Updates & Resources</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy:   #0a1628;
+      --deep:   #0d1f3c;
+      --blue:   #1a3a6b;
+      --accent: #f0a500;
+      --gold:   #e8c56d;
+      --light:  #eef2f9;
+      --white:  #ffffff;
+      --text:   #d0daf0;
+      --muted:  #8899bb;
+      --card:   rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── BACKGROUND TEXTURE ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 10% 0%, rgba(26,58,107,0.5) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 90% 100%, rgba(240,165,0,0.08) 0%, transparent 55%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: relative;
+      z-index: 10;
+      padding: 48px 24px 40px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(13,31,60,0.9) 0%, transparent 100%);
+    }
+
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(240,165,0,0.12);
+      border: 1px solid rgba(240,165,0,0.3);
+      border-radius: 40px;
+      padding: 6px 18px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .logo-badge::before {
+      content: '';
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.7); }
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    .tagline {
+      margin-top: 14px;
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── TOOLBAR ── */
+    .toolbar {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      max-width: 1100px;
+      margin: 32px auto 0;
+      padding: 0 24px;
+    }
+
+    .search-wrap {
+      display: flex;
+      align-items: center;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 16px;
+      gap: 10px;
+      flex: 1;
+      max-width: 380px;
+    }
+
+    .search-wrap svg { color: var(--muted); flex-shrink: 0; }
+
+    #searchInput {
+      background: none;
+      border: none;
+      outline: none;
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      width: 100%;
+    }
+
+    #searchInput::placeholder { color: var(--muted); }
+
+    .refresh-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(240,165,0,0.12);
+      border: 1px solid rgba(240,165,0,0.3);
+      border-radius: 10px;
+      padding: 10px 18px;
+      color: var(--gold);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .refresh-btn:hover {
+      background: rgba(240,165,0,0.22);
+      transform: translateY(-1px);
+    }
+
+    .refresh-btn.spinning svg { animation: spin 1s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .last-updated {
+      font-size: 0.8rem;
+      color: var(--muted);
+      align-self: center;
+    }
+
+    /* ── SETTINGS PANEL ── */
+    .settings-panel {
+      position: relative;
+      z-index: 10;
+      max-width: 1100px;
+      margin: 20px auto 0;
+      padding: 0 24px;
+    }
+
+    .settings-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 14px;
+      color: var(--muted);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .settings-toggle:hover { color: var(--white); border-color: var(--muted); }
+
+    .settings-box {
+      display: none;
+      margin-top: 12px;
+      background: rgba(13,31,60,0.95);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .settings-box.open { display: block; }
+
+    .settings-box label {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .settings-box input[type="text"] {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .settings-box input[type="text"]:focus { border-color: var(--accent); }
+
+    .settings-box .hint {
+      margin-top: 8px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .save-btn {
+      margin-top: 14px;
+      background: var(--accent);
+      color: var(--navy);
+      border: none;
+      border-radius: 8px;
+      padding: 10px 22px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .save-btn:hover { opacity: 0.85; }
+
+    /* ── MAIN CONTENT ── */
+    main {
+      position: relative;
+      z-index: 5;
+      max-width: 1100px;
+      margin: 40px auto 60px;
+      padding: 0 24px;
+    }
+
+    /* ── STATE MESSAGES ── */
+    .state-msg {
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .state-msg .icon {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+
+    .state-msg h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .state-msg p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 400px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ── CARDS GRID ── */
+    #cardsGrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      animation: fadeUp 0.4s ease both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(240,165,0,0.25);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+
+    .card:hover::before { opacity: 1; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-number {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      opacity: 0.8;
+    }
+
+    .card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    /* ── DOCUMENT LINKS ── */
+    .doc-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .doc-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(240,165,0,0.07);
+      border: 1px solid rgba(240,165,0,0.15);
+      border-radius: 9px;
+      padding: 10px 14px;
+      text-decoration: none;
+      color: var(--gold);
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: all 0.2s;
+      word-break: break-word;
+    }
+
+    .doc-link:hover {
+      background: rgba(240,165,0,0.15);
+      border-color: rgba(240,165,0,0.35);
+      transform: translateX(3px);
+    }
+
+    .doc-link svg { flex-shrink: 0; }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 5;
+      text-align: center;
+      padding: 28px 24px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    footer a { color: var(--gold); text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      #cardsGrid { grid-template-columns: 1fr; }
+      .toolbar { flex-direction: column; align-items: stretch; }
+      .search-wrap { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo-badge">Live Updates</div>
+  <h1>DCET <span>2026</span></h1>
+  <p class="tagline">Diploma Common Entrance Test — Latest Notifications, Links & Resources</p>
+</header>
+
+<!-- TOOLBAR -->
+<div class="toolbar">
+  <div class="search-wrap">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+    <input type="text" id="searchInput" placeholder="Search updates…"/>
+  </div>
+  <button class="refresh-btn" id="refreshBtn" onclick="loadSheet()">
+    <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+      <path d="M3 3v5h5"/>
+    </svg>
+    Refresh
+  </button>
+  <span class="last-updated" id="lastUpdated"></span>
+</div>
+
+<!-- SETTINGS -->
+<div class="settings-panel">
+  <button class="settings-toggle" onclick="toggleSettings()">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="3"/>
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+    </svg>
+    ⚙ Connect Google Sheet
+  </button>
+
+  <div class="settings-box" id="settingsBox">
+    <label>Your Google Sheet ID</label>
+    <input type="text" id="sheetIdInput" placeholder="Paste your Sheet ID here (e.g. 1ywuzYxEjHkye6pog1q6vmsgbvbS3wqYqHbCG3aMftuE)"/>
+    <p class="hint">
+      📋 <strong>How to get your Sheet ID:</strong> Open your Google Sheet → look at the URL:<br>
+      <code style="color:var(--gold)">docs.google.com/spreadsheets/d/<u>THIS-PART-IS-THE-ID</u>/edit</code><br><br>
+      ⚠️ <strong>Important:</strong> Your sheet must be set to <strong>"Anyone with the link can view"</strong> (Share → Change to anyone).<br><br>
+      📊 <strong>Column format:</strong> Row 1 = Headers (Heading | About | Document Links). From Row 2 onwards = your data.
+    </p>
+    <button class="save-btn" onclick="saveAndLoad()">Save & Load Sheet</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main>
+  <div id="statusArea"></div>
+  <div id="cardsGrid"></div>
+</main>
+
+<footer>
+  DCET 2026 &mdash; Data sourced live from Google Sheets &middot;
+  Built for Karnataka Diploma Students
+</footer>
+
+<script>
+  // ── CONFIG ──
+  const DEFAULT_SHEET_ID = '1ywuzYxEjHkye6pog1q6vmsgbvbS3wqYqHbCG3aMftuE';
+  let allRows = [];
+
+  function getSheetId() {
+    return localStorage.getItem('dcet_sheet_id') || DEFAULT_SHEET_ID;
+  }
+
+  function toggleSettings() {
+    document.getElementById('settingsBox').classList.toggle('open');
+    document.getElementById('sheetIdInput').value = getSheetId();
+  }
+
+  function saveAndLoad() {
+    const val = document.getElementById('sheetIdInput').value.trim();
+    if (val) {
+      localStorage.setItem('dcet_sheet_id', val);
+      document.getElementById('settingsBox').classList.remove('open');
+      loadSheet();
+    }
+  }
+
+  // ── LOAD SHEET ──
+  async function loadSheet() {
+    const btn = document.getElementById('refreshBtn');
+    btn.classList.add('spinning');
+    setStatus('loading');
+
+    const id = getSheetId();
+    const url = `https://docs.google.com/spreadsheets/d/${id}/export?format=csv&gid=0`;
+
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const csv = await res.text();
+      const rows = parseCSV(csv);
+      // Skip header row
+      allRows = rows.slice(1).filter(r => r[0] && r[0].trim());
+      renderCards(allRows);
+      document.getElementById('lastUpdated').textContent =
+        'Updated ' + new Date().toLocaleTimeString();
+      if (allRows.length === 0) setStatus('empty');
+    } catch (e) {
+      setStatus('error');
+    } finally {
+      btn.classList.remove('spinning');
+    }
+  }
+
+  // ── PARSE CSV ──
+  function parseCSV(text) {
+    const rows = [];
+    const lines = text.split(/\r?\n/);
+    for (const line of lines) {
+      if (!line.trim()) continue;
+      const cols = [];
+      let inQ = false, cur = '';
+      for (let i = 0; i < line.length; i++) {
+        const c = line[i];
+        if (c === '"') {
+          if (inQ && line[i+1] === '"') { cur += '"'; i++; }
+          else inQ = !inQ;
+        } else if (c === ',' && !inQ) {
+          cols.push(cur); cur = '';
+        } else cur += c;
+      }
+      cols.push(cur);
+      rows.push(cols.map(c => c.trim()));
+    }
+    return rows;
+  }
+
+  // ── RENDER CARDS ──
+  function renderCards(rows) {
+    const grid = document.getElementById('cardsGrid');
+    grid.innerHTML = '';
+    document.getElementById('statusArea').innerHTML = '';
+
+    if (!rows.length) { setStatus('empty'); return; }
+
+    rows.forEach((row, i) => {
+      const heading = row[0] || '';
+      const about   = row[1] || '';
+      const links   = row[2] || '';
+
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.style.animationDelay = (i * 60) + 'ms';
+
+      // Parse links (comma or newline separated)
+      const linkList = links
+        .split(/[\n,]+/)
+        .map(l => l.trim())
+        .filter(l => l);
+
+      const linksHTML = linkList.map(l => {
+        const isURL = l.match(/^https?:\/\//i);
+        if (isURL) {
+          // Try to get a label
+          let label = l;
+          try {
+            const u = new URL(l);
+            // Shorten long URLs
+            label = u.hostname.replace('www.','') + (u.pathname !== '/' ? u.pathname.substring(0,30) + (u.pathname.length > 30 ? '…' : '') : '');
+          } catch(e) {}
+          return `<a class="doc-link" href="${l}" target="_blank" rel="noopener">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/>
+              <line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+            ${label}
+          </a>`;
+        } else if (l) {
+          // Plain text label (not a link)
+          return `<span style="font-size:0.85rem;color:var(--muted);padding:4px 0;display:block;">📎 ${l}</span>`;
+        }
+        return '';
+      }).join('');
+
+      card.innerHTML = `
+        <span class="card-number">Update #${String(i+1).padStart(2,'0')}</span>
+        <h2>${escHtml(heading)}</h2>
+        ${about ? `<p>${escHtml(about).replace(/\n/g,'<br>')}</p>` : ''}
+        ${linksHTML ? `<div class="doc-links">${linksHTML}</div>` : ''}
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  function escHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // ── STATUS ──
+  function setStatus(type) {
+    const area = document.getElementById('statusArea');
+    const grid = document.getElementById('cardsGrid');
+    grid.innerHTML = '';
+    const msgs = {
+      loading: `<div class="state-msg"><div class="icon">⏳</div><h3>Loading Updates…</h3><p>Fetching latest data from Google Sheets.</p></div>`,
+      empty:   `<div class="state-msg"><div class="icon">📋</div><h3>No Data Yet</h3><p>Your Google Sheet appears empty. Add rows with Heading, About, and Document Links columns.</p></div>`,
+      error:   `<div class="state-msg"><div class="icon">⚠️</div><h3>Could Not Load Sheet</h3><p>Make sure your Google Sheet is publicly shared ("Anyone with the link can view") and the Sheet ID is correct. Click ⚙ above to update the ID.</p></div>`,
+    };
+    area.innerHTML = msgs[type] || '';
+  }
+
+  // ── SEARCH ──
+  document.getElementById('searchInput').addEventListener('input', function() {
+    const q = this.value.toLowerCase();
+    if (!q) { renderCards(allRows); return; }
+    const filtered = allRows.filter(r =>
+      (r[0]||'').toLowerCase().includes(q) ||
+      (r[1]||'').toLowerCase().includes(q) ||
+      (r[2]||'').toLowerCase().includes(q)
+    );
+    renderCards(filtered);
+    if (!filtered.length) setStatus('empty');
+  });
+
+  // ── INIT ──
+  loadSheet();
+</script>
+</body>
+</html>
