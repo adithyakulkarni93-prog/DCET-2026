@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fbf8f2">
+<title>Page not found — Shambhavi Kulkarni</title>
+<meta name="description" content="This page could not be found. Return to the gallery of original paintings by Shambhavi Kulkarni.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2317130c'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='27' fill='%23c9a84c' text-anchor='middle'%3ESK%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Cinzel:wght@400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --ink: #17130c;
+    --cream: #fbf8f2;
+    --parchment: #ece3d2;
+    --gold: #c9a84c;
+    --gold-deep: #74571a;
+    --gold-light: #e8d08a;
+    --rust: #8b3a2a;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --caps: 'Cinzel', Georgia, serif;
+    --sans: 'Jost', 'Helvetica Neue', Arial, sans-serif;
+  }
+  body {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    padding: clamp(28px, 6vw, 64px);
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.7;
+    background-image:
+      radial-gradient(900px 520px at 82% 12%, rgba(201, 168, 76, .16), transparent 62%),
+      radial-gradient(700px 460px at 8% 92%, rgba(139, 58, 42, .08), transparent 65%);
+    background-attachment: fixed;
+  }
+  main {
+    width: 100%;
+    max-width: 760px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, .8fr);
+    gap: clamp(28px, 5vw, 56px);
+    align-items: center;
+  }
+  .eyebrow {
+    font-family: var(--caps);
+    font-size: 10px;
+    letter-spacing: .44em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+  }
+  h1 {
+    margin-top: 20px;
+    font-family: var(--serif);
+    font-size: clamp(40px, 7vw, 68px);
+    font-weight: 300;
+    line-height: 1.02;
+    letter-spacing: -.01em;
+  }
+  h1 em { font-style: italic; color: var(--rust); }
+  p { margin-top: 20px; font-family: var(--serif); font-size: clamp(17px, 1.8vw, 20px); color: #4a4030; max-width: 36ch; }
+  .actions { margin-top: 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 15px 32px;
+    background: var(--ink);
+    color: var(--cream);
+    font-size: 11px; letter-spacing: .26em; text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--ink);
+    transition: background .35s, color .35s, border-color .35s;
+  }
+  .btn:hover { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+  .link {
+    font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--ink); text-decoration: none;
+    padding-bottom: 3px;
+    border-bottom: 1px solid rgba(23, 19, 12, .3);
+    transition: color .3s, border-color .3s;
+  }
+  .link:hover { color: var(--gold-deep); border-color: var(--gold); }
+  .art {
+    position: relative;
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+    box-shadow: 0 40px 80px -40px rgba(23, 19, 12, .5);
+    background: var(--parchment);
+  }
+  .art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .art figcaption {
+    position: absolute; inset: auto 0 0 0;
+    padding: 40px 16px 14px;
+    background: linear-gradient(to top, rgba(23, 19, 12, .8), transparent);
+    color: var(--cream);
+    font-size: 9px; letter-spacing: .24em; text-transform: uppercase;
+    text-align: center;
+  }
+  :focus-visible { outline: 2px solid var(--gold-deep); outline-offset: 4px; }
+  @media (max-width: 640px) {
+    main { grid-template-columns: 1fr; text-align: center; }
+    .art { order: -1; max-width: 230px; margin: 0 auto; }
+    p { margin-left: auto; margin-right: auto; }
+    .actions { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+  <main>
+    <div>
+      <p class="eyebrow">Error 404</p>
+      <h1>This canvas is<br><em>blank</em></h1>
+      <p>The page you were looking for has moved on — like most good paintings, it found a new home.</p>
+      <div class="actions">
+        <a class="btn" href="./">Back to the gallery</a>
+        <a class="link" href="./#commission">Commission a work →</a>
+      </div>
+    </div>
+    <figure class="art">
+      <img src="assets/hero-painting.jpg" alt="Detail of Golden Hour — an atmospheric oil painting in sage, rust and gold." width="768" height="1376">
+      <figcaption>Golden Hour · Oil &amp; gold leaf</figcaption>
+    </figure>
+  </main>
+</body>
+</html>
